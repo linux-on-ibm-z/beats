@@ -44,7 +44,7 @@ import:
   subpackages:
   - /windows/svc/eventlog
 - package: golang.org/x/net
-  version: d58ca6618b994150e624f6888d871f4709db51a0
+  version: 05d3205156cb1bdc096578d6457fa161cd950aa2
   subpackages:
   - /proxy
   - /publicsuffix
