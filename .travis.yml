@@ -3,6 +3,8 @@ dist: trusty
 services:
   - docker
 
+arch: linux 
+
 language: go
 
 # Make sure project can also be built on travis for clones of the repo
@@ -26,17 +28,17 @@ matrix:
     - os: linux
       env: TARGETS="-C filebeat testsuite"
       go: *go_version
-    - os: osx
-      env: TARGETS="TEST_ENVIRONMENT=0 -C filebeat testsuite"
-      go: *go_version
+#    - os: osx
+#      env: TARGETS="TEST_ENVIRONMENT=0 -C filebeat testsuite"
+#      go: *go_version
 
     # Heartbeat
     - os: linux
       env: TARGETS="-C heartbeat testsuite"
       go: *go_version
-    - os: osx
-      env: TARGETS="TEST_ENVIRONMENT=0 -C heartbeat testsuite"
-      go: *go_version
+#    - os: osx
+#      env: TARGETS="TEST_ENVIRONMENT=0 -C heartbeat testsuite"
+#      go: *go_version
 
     # Libbeat
     - os: linux
@@ -50,9 +52,9 @@ matrix:
     - os: linux
       env: TARGETS="-C metricbeat testsuite"
       go: *go_version
-    - os: osx
-      env: TARGETS="TEST_ENVIRONMENT=0 -C metricbeat testsuite"
-      go: *go_version
+#    - os: osx
+#      env: TARGETS="TEST_ENVIRONMENT=0 -C metricbeat testsuite"
+#      go: *go_version
     - os: linux
       env: TARGETS="-C metricbeat crosscompile"
       go: *go_version
