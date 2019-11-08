@@ -3,7 +3,7 @@ dist: trusty
 services:
   - docker
 
-arch: linux 
+arch: s390x
 
 language: go
 
