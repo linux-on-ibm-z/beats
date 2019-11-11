@@ -25,62 +25,62 @@ matrix:
       go: *go_version
 
     # Filebeat
-    - os: linux
-      env: TARGETS="-C filebeat testsuite"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C filebeat testsuite"
+    #  go: *go_version
 #    - os: osx
 #      env: TARGETS="TEST_ENVIRONMENT=0 -C filebeat testsuite"
 #      go: *go_version
 
     # Heartbeat
-    - os: linux
-      env: TARGETS="-C heartbeat testsuite"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C heartbeat testsuite"
+    #  go: *go_version
 #    - os: osx
 #      env: TARGETS="TEST_ENVIRONMENT=0 -C heartbeat testsuite"
 #      go: *go_version
 
     # Libbeat
-    - os: linux
-      env: TARGETS="-C libbeat testsuite"
-      go: *go_version
-    - os: linux
-      env: TARGETS="-C libbeat crosscompile"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C libbeat testsuite"
+    #  go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C libbeat crosscompile"
+    #  go: *go_version
 
     # Metricbeat
-    - os: linux
-      env: TARGETS="-C metricbeat testsuite"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C metricbeat testsuite"
+    #  go: *go_version
 #    - os: osx
 #      env: TARGETS="TEST_ENVIRONMENT=0 -C metricbeat testsuite"
 #      go: *go_version
-    - os: linux
-      env: TARGETS="-C metricbeat crosscompile"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C metricbeat crosscompile"
+    #  go: *go_version
 
     # Packetbeat
-    - os: linux
-      env: TARGETS="-C packetbeat testsuite"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C packetbeat testsuite"
+    #  go: *go_version
 
     # Winlogbeat
-    - os: linux
-      env: TARGETS="-C winlogbeat crosscompile"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C winlogbeat crosscompile"
+    #  go: *go_version
 
     # Dashboards
-    - os: linux
-      env: TARGETS="-C dev-tools/cmd/import_dashboards"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C dev-tools/cmd/import_dashboards"
+    #  go: *go_version
 
     # Generators
-    - os: linux
-      env: TARGETS="-C generator/metricbeat test"
-      go: *go_version
-    - os: linux
-      env: TARGETS="-C generator/beat test"
-      go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C generator/metricbeat test"
+    #  go: *go_version
+    #- os: linux
+    #  env: TARGETS="-C generator/beat test"
+    #  go: *go_version
 
 addons:
   apt:
@@ -97,7 +97,8 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - sudo apt-get install -y python-virtualenv
+  - sudo apt install -y python-pip
+  - pip install virtualenv
 
 # Skips installations step
 install: true
