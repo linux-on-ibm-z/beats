@@ -165,12 +165,12 @@ func TestGetOpenMetricsEventsFromMetricFamily(t *testing.T) {
 				Metric: []*openmetrics.OpenMetric{
 					{
 						Histogram: &openmetrics.Histogram{
-							SampleCount: proto.Uint64(10),
+							SampleCount: proto.Float64(10),
 							SampleSum:   proto.Float64(10),
 							Bucket: []*openmetrics.Bucket{
 								{
 									UpperBound:      proto.Float64(0.99),
-									CumulativeCount: proto.Uint64(10),
+									CumulativeCount: proto.Float64(10),
 								},
 							},
 						},
@@ -317,12 +317,12 @@ func TestSkipMetricFamily(t *testing.T) {
 			Metric: []*openmetrics.OpenMetric{
 				{
 					Histogram: &openmetrics.Histogram{
-						SampleCount: proto.Uint64(10),
+						SampleCount: proto.Float64(10),
 						SampleSum:   proto.Float64(10),
 						Bucket: []*openmetrics.Bucket{
 							{
 								UpperBound:      proto.Float64(0.99),
-								CumulativeCount: proto.Uint64(10),
+								CumulativeCount: proto.Float64(10),
 							},
 						},
 					},

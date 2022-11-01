@@ -229,7 +229,7 @@ func (p *openmetricEventGenerator) GenerateOpenMetricsEvents(mf *p.OpenMetricFam
 					Data: mapstr.M{
 						"metrics": mapstr.M{
 							name + sum:   histogram.GetSampleSum(),
-							name + count: histogram.GetSampleCount(),
+							name + count: uint64(histogram.GetSampleCount()),
 						},
 					},
 					Labels: labels,
@@ -237,7 +237,7 @@ func (p *openmetricEventGenerator) GenerateOpenMetricsEvents(mf *p.OpenMetricFam
 			}
 
 			for _, bucket := range histogram.GetBucket() {
-				if bucket.GetCumulativeCount() == uint64(math.NaN()) || bucket.GetCumulativeCount() == uint64(math.Inf(0)) {
+				if math.IsNaN(bucket.GetCumulativeCount()) || math.IsInf(bucket.GetCumulativeCount(), 0) {
 					continue
 				}
 
@@ -259,7 +259,7 @@ func (p *openmetricEventGenerator) GenerateOpenMetricsEvents(mf *p.OpenMetricFam
 				events = append(events, OpenMetricEvent{
 					Data: mapstr.M{
 						"metrics": mapstr.M{
-							name + "_bucket": bucket.GetCumulativeCount(),
+							name + "_bucket": uint64(bucket.GetCumulativeCount()),
 						},
 					},
 					Labels:    bucketLabels,
