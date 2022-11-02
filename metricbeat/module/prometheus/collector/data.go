@@ -22,6 +22,7 @@ import (
 	"strconv"
 
 	"github.com/elastic/beats/v7/metricbeat/helper/labelhash"
+	"github.com/elastic/beats/v7/metricbeat/helper/prometheus"
 	"github.com/elastic/beats/v7/metricbeat/mb"
 	"github.com/elastic/elastic-agent-libs/mapstr"
 
@@ -142,7 +143,7 @@ func (p *promEventGenerator) GeneratePromEvents(mf *dto.MetricFamily) []PromEven
 			}
 
 			for _, bucket := range histogram.GetBucket() {
-				if bucket.GetCumulativeCount() == uint64(math.NaN()) || bucket.GetCumulativeCount() == uint64(math.Inf(0)) {
+				if prometheus.IsNaN(bucket.GetCumulativeCount()) || prometheus.IsInf(bucket.GetCumulativeCount()) {
 					continue
 				}
 

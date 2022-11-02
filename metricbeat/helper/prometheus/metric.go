@@ -255,7 +255,7 @@ func (m *commonMetric) GetValue(metric *dto.Metric) interface{} {
 		buckets := histogram.GetBucket()
 		bucketMap := mapstr.M{}
 		for _, bucket := range buckets {
-			if bucket.GetCumulativeCount() != uint64(math.NaN()) && bucket.GetCumulativeCount() != uint64(math.Inf(0)) {
+			if !IsNaN(bucket.GetCumulativeCount()) && !IsInf(bucket.GetCumulativeCount()) {
 				key := strconv.FormatFloat(bucket.GetUpperBound(), 'f', -1, 64)
 				bucketMap[key] = bucket.GetCumulativeCount()
 			}
