@@ -248,7 +248,7 @@ func (m *commonMetric) GetValue(metric *OpenMetric) interface{} {
 		value := mapstr.M{}
 		if !math.IsNaN(summary.GetSampleSum()) && !math.IsInf(summary.GetSampleSum(), 0) {
 			value["sum"] = summary.GetSampleSum()
-			value["count"] = summary.GetSampleCount()
+			value["count"] = uint64(summary.GetSampleCount())
 		}
 
 		quantiles := summary.GetQuantile()

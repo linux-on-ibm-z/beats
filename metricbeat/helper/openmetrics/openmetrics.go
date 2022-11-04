@@ -120,12 +120,12 @@ func (m *Quantile) GetValue() float64 {
 }
 
 type Summary struct {
-	SampleCount *uint64
+	SampleCount *float64
 	SampleSum   *float64
 	Quantile    []*Quantile
 }
 
-func (m *Summary) GetSampleCount() uint64 {
+func (m *Summary) GetSampleCount() float64 {
 	if m != nil && m.SampleCount != nil {
 		return *m.SampleCount
 	}
@@ -445,8 +445,7 @@ func summaryMetricName(name string, s float64, qv string, lbls string, t *int64,
 
 	switch {
 	case isCount(name):
-		u := uint64(s)
-		summary.SampleCount = &u
+		summary.SampleCount = &s
 		name = name[:len(name)-6]
 	case isSum(name):
 		summary.SampleSum = &s

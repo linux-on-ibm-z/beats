@@ -121,7 +121,7 @@ func TestGetOpenMetricsEventsFromMetricFamily(t *testing.T) {
 				Metric: []*openmetrics.OpenMetric{
 					{
 						Summary: &openmetrics.Summary{
-							SampleCount: proto.Uint64(10),
+							SampleCount: proto.Float64(10),
 							SampleSum:   proto.Float64(10),
 							Quantile: []*openmetrics.Quantile{
 								{
@@ -298,7 +298,7 @@ func TestSkipMetricFamily(t *testing.T) {
 			Metric: []*openmetrics.OpenMetric{
 				{
 					Summary: &openmetrics.Summary{
-						SampleCount: proto.Uint64(10),
+						SampleCount: proto.Float64(10),
 						SampleSum:   proto.Float64(10),
 						Quantile: []*openmetrics.Quantile{
 							{

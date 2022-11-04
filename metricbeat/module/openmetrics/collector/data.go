@@ -185,7 +185,7 @@ func (p *openmetricEventGenerator) GenerateOpenMetricsEvents(mf *p.OpenMetricFam
 					Data: mapstr.M{
 						"metrics": mapstr.M{
 							name + "_sum":   summary.GetSampleSum(),
-							name + "_count": summary.GetSampleCount(),
+							name + "_count": uint64(summary.GetSampleCount()),
 						},
 					},
 					Labels: labels,
