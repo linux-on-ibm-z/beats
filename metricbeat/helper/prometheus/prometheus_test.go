@@ -22,6 +22,7 @@ import (
 	"compress/gzip"
 	"io/ioutil"
 	"net/http"
+	"runtime"
 	"sort"
 	"testing"
 
@@ -969,6 +970,11 @@ func TestPrometheusKeyLabels(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
+		if runtime.GOARCH == "s390x" && tc.testName == "Test histogram with KeyLabel With NaN Inf" {
+			t.Logf("Skipping test case \"%s\" which uses arch dependent NaN and Inf filtering that is not valid on s390x", tc.testName)
+			continue
+		}
+
 		r := &mbtest.CapturingReporterV2{}
 		p := &prometheus{mockFetcher{response: tc.prometheusResponse}, logp.NewLogger("test")}
 		p.ReportProcessedMetrics(tc.mapping, r)

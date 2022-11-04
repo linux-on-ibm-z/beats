@@ -46,7 +46,8 @@ func TestAll(t *testing.T) {
 
 			if runtime.GOOS == "aix" && (moduleName == "docker" || moduleName == "kubernetes") {
 				t.Skipf("%s module not available on AIX", moduleName)
-
+			} else if runtime.GOARCH == "s390x" && moduleName == "prometheus" && metricSetName == "collector" {
+				t.Skipf("%s/%s uses arch dependent NaN and Inf filtering that is not valid on s390x", moduleName, metricSetName)
 			} else {
 				config := mbtest.ReadDataConfig(t, f)
 				mbtest.TestDataFilesWithConfig(t, moduleName, metricSetName, config)

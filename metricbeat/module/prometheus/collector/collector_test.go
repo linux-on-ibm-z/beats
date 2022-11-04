@@ -21,6 +21,7 @@
 package collector
 
 import (
+	"runtime"
 	"testing"
 
 	"github.com/elastic/beats/v7/metricbeat/mb"
@@ -378,5 +379,8 @@ func TestSkipMetricFamily(t *testing.T) {
 }
 
 func TestData(t *testing.T) {
+	if runtime.GOARCH == "s390x" {
+		t.Skipf("prometheus/collector uses arch dependent NaN and Inf filtering that is not valid on s390x")
+	}
 	mbtest.TestDataFiles(t, "prometheus", "collector")
 }
